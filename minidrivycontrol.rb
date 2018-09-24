@@ -57,7 +57,7 @@ class Car
     @booked = false
   end
 
-  def booking
+  def book
     @booked = true
   end
 
