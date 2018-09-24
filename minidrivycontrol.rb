@@ -36,3 +36,23 @@ rentals_data = [
     "kms" => 1200
   }
 ]
+
+class Rental
+
+  def initialize(id, car_id, days, kms)
+    @id = id
+    @car_id = car_id
+    @days = days
+    @kms = kms
+  end
+
+end
+
+rentals_array = []
+
+rentals_data.each do |rental_data|
+  rental = Rental.new(rental_data["id"], rental_data["car_id"], rental_data["days"], rental_data["kms"])
+  rentals_array += [rental]
+end
+
+puts rentals_array.to_s
