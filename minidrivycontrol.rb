@@ -48,11 +48,30 @@ class Rental
 
 end
 
+class Car
+
+  def initialize(id, price_per_day, price_per_km)
+    @id = id
+    @price_per_day = price_per_day
+    @price_per_km = price_per_km
+    @booked = false
+  end
+
+  def booking
+    @booked = true
+  end
+
+end
+
 rentals_array = []
+cars_array = []
 
 rentals_data.each do |rental_data|
   rental = Rental.new(rental_data["id"], rental_data["car_id"], rental_data["days"], rental_data["kms"])
   rentals_array += [rental]
 end
 
-puts rentals_array.to_s
+cars_data.each do |car_data|
+  car = Car.new(car_data["id"], car_data["price_per_day"], car_data["price_per_km"])
+  cars_array += [car]
+end
