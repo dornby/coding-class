@@ -44,6 +44,22 @@ class Rental
     @car_id = car_id
     @days = days
     @kms = kms
+#    @cars_array =
+    @booked_car = false
+    @acceptable = true
+  end
+
+  def check_acceptability
+
+    if @booked_car == true then @acceptable = false
+    end
+
+  end
+
+  def book_car
+
+    @booked_car = true
+
   end
 
 end
@@ -54,11 +70,7 @@ class Car
     @id = id
     @price_per_day = price_per_day
     @price_per_km = price_per_km
-    @booked = false
-  end
-
-  def book
-    @booked = true
+    @available = true
   end
 
 end
@@ -66,12 +78,14 @@ end
 rentals_array = []
 cars_array = []
 
+cars_data.each do |car_data|
+  car = Car.new(car_data["id"], car_data["price_per_day"], car_data["price_per_km"])
+  cars_array += [car]
+end
+
 rentals_data.each do |rental_data|
   rental = Rental.new(rental_data["id"], rental_data["car_id"], rental_data["days"], rental_data["kms"])
   rentals_array += [rental]
 end
 
-cars_data.each do |car_data|
-  car = Car.new(car_data["id"], car_data["price_per_day"], car_data["price_per_km"])
-  cars_array += [car]
-end
+puts rentals_array.to_s
