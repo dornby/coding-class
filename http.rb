@@ -1,11 +1,10 @@
-require_relative "secrets"
+require "json"
 require "faraday"
+require_relative "secrets"
 
 response = Faraday.get 'https://api.trello.com/1/boards/LFZoaH46/cards?fields=name,url'
 
 json_cards = response.body
-
-require "json"
 
 cards = JSON.parse(json_cards)
 
